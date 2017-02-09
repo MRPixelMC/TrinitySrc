@@ -91,4 +91,8 @@ void WorldDatabaseConnection::DoPrepareStatements()
     PrepareStatement(WORLD_DEL_DISABLES, "DELETE FROM disables WHERE entry = ? AND sourceType = ?", CONNECTION_ASYNC);
     PrepareStatement(WORLD_UPD_CREATURE_ZONE_AREA_DATA, "UPDATE creature SET zoneId = ?, areaId = ? WHERE guid = ?", CONNECTION_ASYNC);
     PrepareStatement(WORLD_UPD_GAMEOBJECT_ZONE_AREA_DATA, "UPDATE gameobject SET zoneId = ?, areaId = ? WHERE guid = ?", CONNECTION_ASYNC);
+
+	// Gamble NPC
+	PrepareStatement(WORLD_SEL_GAMBLE_ITEMS, "SELECT item FROM gamble_items", CONNECTION_SYNCH);
+	PrepareStatement(WORLD_SEL_ITEMNAME_BYENTRY, "SELECT name FROM item_template WHERE entry = ?", CONNECTION_SYNCH);
 }
