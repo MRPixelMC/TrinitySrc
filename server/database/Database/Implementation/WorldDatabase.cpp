@@ -95,4 +95,10 @@ void WorldDatabaseConnection::DoPrepareStatements()
 	// Gamble NPC
 	PrepareStatement(WORLD_SEL_GAMBLE_ITEMS, "SELECT item FROM gamble_items", CONNECTION_SYNCH);
 	PrepareStatement(WORLD_SEL_ITEMNAME_BYENTRY, "SELECT name FROM item_template WHERE entry = ?", CONNECTION_SYNCH);
+
+	// 1vs1 Betting NPC
+	PrepareStatement(WORLD_INS_1VS1, "INSERT INTO 1vs1_betting VALUES (?, ?, ?, ?, ?, ?)", CONNECTION_ASYNC);
+	PrepareStatement(WORLD_SEL_1VS1_BYGUID, "SELECT * FROM 1vs1_betting WHERE player1 = ? OR player2 = ?", CONNECTION_SYNCH);
+	PrepareStatement(WORLD_UPD_1VS1_BYGUID, "UPDATE 1vs1_betting SET arena = ?, phase = ? WHERE player1 = ? AND player2 = ?", CONNECTION_ASYNC);
+	PrepareStatement(WORLD_DEL_1VS1_BYGUID, "DELETE FROM 1vs1_betting WHERE player1 = ? OR player2 = ?", CONNECTION_ASYNC);
 }

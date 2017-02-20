@@ -17,10 +17,12 @@
 
 // This is where scripts' loading functions should be declared:
 void AddSC_npc_gamble();
+void AddSC_npc_1vs1_betting();
 
 // The name of this function should match:
 // void Add${NameOfDirectory}Scripts()
 void AddCustomScripts()
 {
 	AddSC_npc_gamble();
+	AddSC_npc_1vs1_betting();
 }
