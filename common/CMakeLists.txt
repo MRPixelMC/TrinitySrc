@@ -63,7 +63,7 @@ target_include_directories(common
 target_link_libraries(common
   PUBLIC
     boost
-    fmt
+    cppformat
     g3dlib
     Detour
     sfmt

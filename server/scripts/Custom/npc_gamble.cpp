@@ -2,9 +2,6 @@
 #define OPTION_DOUBLE	2
 #define OPTION_TRIPLE	3
 
-
-uint32 itemID;
-
 class npc_gamble : public CreatureScript
 {
 	public:
@@ -131,6 +128,9 @@ class npc_gamble : public CreatureScript
 			player->PlayerTalkClass->SendCloseGossip();
 			return true;
 		}
+
+	private:
+		uint32 itemID;
 };
 
 void AddSC_npc_gamble()
