@@ -220,8 +220,20 @@ void WorldSession::HandleOpenItemOpcode(WorldPacket& recvPacket)
         // was not unlocked yet
         if (item->IsLocked())
         {
-            pUser->SendEquipError(EQUIP_ERR_ITEM_LOCKED, item, NULL);
-            return;
+			if (lockInfo->Type[0] == 1) // Requires an item
+			{
+				uint32 requiredItem = lockInfo->Index[0];
+				if (GetPlayer()->HasItemCount(requiredItem))
+				{
+					item->SetFlag(ITEM_FIELD_FLAGS, ITEM_FIELD_FLAG_UNLOCKED);
+					GetPlayer()->DestroyItemCount(requiredItem, 1, true);
+				}
+				else
+				{
+					pUser->SendEquipError(EQUIP_ERR_ITEM_LOCKED, item, NULL);
+					return;
+				}
+			}
         }
     }
 
