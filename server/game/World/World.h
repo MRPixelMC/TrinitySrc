@@ -513,6 +513,7 @@ enum WorldStates
     WS_CLEANING_FLAGS           = 20004,                     // Cleaning Flags
     WS_GUILD_DAILY_RESET_TIME   = 20006,                     // Next guild cap reset time
     WS_MONTHLY_QUEST_RESET_TIME = 20007,                     // Next monthly reset time
+	WS_LOTTERY_TIME				= 30005,					 // Next lottery time
 };
 
 /// Storage class for commands issued for delayed execution

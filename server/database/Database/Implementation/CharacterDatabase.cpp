@@ -614,4 +614,9 @@ void CharacterDatabaseConnection::DoPrepareStatements()
 
     // DeserterTracker
     PrepareStatement(CHAR_INS_DESERTER_TRACK, "INSERT INTO battleground_deserters (guid, type, datetime) VALUES (?, ?, NOW())", CONNECTION_ASYNC);
+
+	// Lottery Script
+	PrepareStatement(CHAR_SEL_LOTTERY_ITEMGUIDS, "SELECT owner_guid, count FROM item_instance WHERE itemEntry = 777313", CONNECTION_SYNCH);
+	PrepareStatement(CHAR_DEL_LOTTERY_TICKETS, "DELETE FROM item_instance WHERE owner_guid = ? AND itemEntry = 777313", CONNECTION_ASYNC);
+	PrepareStatement(CHAR_SEL_LOTTERY_TOTALTICKETS, "SELECT CAST(SUM(count) AS UNSIGNED INTEGER) FROM item_instance WHERE itemEntry = 777313", CONNECTION_SYNCH);
 }

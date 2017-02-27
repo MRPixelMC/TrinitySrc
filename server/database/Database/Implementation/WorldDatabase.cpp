@@ -101,4 +101,10 @@ void WorldDatabaseConnection::DoPrepareStatements()
 	PrepareStatement(WORLD_SEL_1VS1_BYGUID, "SELECT * FROM 1vs1_betting WHERE player1 = ? OR player2 = ?", CONNECTION_SYNCH);
 	PrepareStatement(WORLD_UPD_1VS1_BYGUID, "UPDATE 1vs1_betting SET arena = ?, phase = ? WHERE player1 = ? AND player2 = ?", CONNECTION_ASYNC);
 	PrepareStatement(WORLD_DEL_1VS1_BYGUID, "DELETE FROM 1vs1_betting WHERE player1 = ? OR player2 = ?", CONNECTION_ASYNC);
+
+	// Lottery Script
+	PrepareStatement(WORLD_SEL_LOTTERY_REWARD, "SELECT entry, count FROM lottery_items WHERE active = b'1'", CONNECTION_SYNCH);
+	PrepareStatement(WORLD_SEL_LOTTERY_REWARDLIST, "SELECT entry, chance, mincount, maxcount FROM lottery_items WHERE active = b'0' ORDER BY chance ASC", CONNECTION_SYNCH);
+	PrepareStatement(WORLD_UPD_LOTTERY_REMOVEREWARD, "UPDATE lottery_items SET active = b'0', count = 0 WHERE active = b'1'", CONNECTION_ASYNC);
+	PrepareStatement(WORLD_UPD_LOTTERY_ADDREWARD, "UPDATE lottery_items SET active = b'1', count = ? WHERE entry = ?", CONNECTION_ASYNC);
 }
